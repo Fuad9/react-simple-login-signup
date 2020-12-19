@@ -44,6 +44,29 @@ export const handleGoogleSignIn = () => {
       });
 };
 
+//twitter sign in
+export const handleTwitterSignIn = () => {
+   var twitterProvider = new firebase.auth.TwitterAuthProvider();
+   return firebase
+      .auth()
+      .signInWithPopup(twitterProvider)
+      .then((res) => {
+         const signedInUser = {
+            isSignedIn: true,
+            name: res.user.displayName,
+            email: res.user.email,
+            photo: res.user.photoURL,
+            success: true,
+         };
+         storeAuthToken();
+         return signedInUser;
+      })
+      .catch((err) => {
+         console.log(err);
+         console.log(err.message);
+      });
+};
+
 export const createUserWithEmailAndPassword = (name, email, password) => {
    return firebase
       .auth()

@@ -2,7 +2,6 @@
    position: absolute;
    top: 60%;
    left: 50%;
-   margin-bottom: 100px;
    transform: translate(-50%, -50%);
    width: 400px;
    padding: 40px;
@@ -23,7 +22,6 @@
    font-size: 16px;
    color: rgb(255, 255, 255);
    letter-spacing: 1px;
-   margin-bottom: 15px;
    border: none;
    border-bottom: 2px solid #fff;
    outline: none;

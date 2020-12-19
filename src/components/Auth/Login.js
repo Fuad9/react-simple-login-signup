@@ -6,11 +6,13 @@ import {
    createUserWithEmailAndPassword,
    handleGoogleSignIn,
    handleSignOut,
+   handleTwitterSignIn,
    initializeLoginFramework,
    signInWithEmailAndPassword,
 } from "./LoginManager";
 import { useForm } from "react-hook-form";
 import GoogleIcon from "./GoogleIcon.png";
+import twitterIcon from "./twitter-logo-24.png";
 
 export const Login = () => {
    // const [newUser, setNewUser] = useState(false);
@@ -42,6 +44,13 @@ export const Login = () => {
    // to sign in via google
    const googleSignIn = () => {
       handleGoogleSignIn().then((res) => {
+         handleResponse(res, true);
+      });
+   };
+
+   // to sign in via twitter
+   const twitterSignIn = () => {
+      handleTwitterSignIn().then((res) => {
          handleResponse(res, true);
       });
    };
@@ -114,7 +123,7 @@ export const Login = () => {
          {user.isSignedIn ? (
             <button onClick={signOut}>Sign out</button>
          ) : (
-            <div className="auth my-3">
+            <div className="auth mb-3">
                <button onClick={googleSignIn}>
                   <img src={GoogleIcon} alt="" />
                   Continue with Google
@@ -122,8 +131,19 @@ export const Login = () => {
             </div>
          )}
 
+         {user.isSignedIn ? (
+            <button onClick={signOut}>Sign out</button>
+         ) : (
+            <div className="auth mb-3">
+               <button onClick={twitterSignIn}>
+                  <img src={twitterIcon} alt="" />
+                  Continue with Twitter
+               </button>
+            </div>
+         )}
+
          {!loggedInUser ? (
-            <div className="container">
+            <div className="container my-4">
                <form onSubmit={handleSubmit(handleSignUp)}>
                   <p className="text-danger">
                      * Your password must be at least six characters long and must have at least one
